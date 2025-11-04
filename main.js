@@ -1,101 +1,185 @@
-//DOMContentLoaded ამოწმებს ჩატვირთულია თუ არა html სრულად.
-document.addEventListener("DOMContentLoaded", () => {
-  let CheckBox = document.querySelector('#MenuCheckBox')
-  let header = document.querySelector("header")
-  let nav = document.querySelector("nav")
-  let menuPart = document.querySelector("#menuPart")
-  let ul = document.querySelector("#menuUl")
-  let contact = document.querySelector(".contact")
-  let logo = document.querySelector(".logo")
-  let form = document.getElementById("infoForm")
-  let output = document.getElementById("output")
-  let deleteBtn = document.getElementById("deleteBtn")
+        (function() {
+            'use strict';
 
+            const APP = {
+                elements: {
+                    form: document.getElementById('contact-form'),
+                    output: document.getElementById('output'),
+                    deleteBtn: document.getElementById('delete-btn'),
+                    menuCheckbox: document.getElementById('menu-checkbox'),
+                    successMessage: document.getElementById('success-message')
+                },
+                
+                init() {
+                    this.loadUserInfo();
+                    this.attachEventListeners();
+                },
 
-CheckBox.addEventListener("click", () => {
-  if(CheckBox.checked){
-    header.classList.add("toOpenBurger")
-    nav.classList.add("burgerNav")
-    contact.classList.add("burgerContact")
-    logo.classList.add("logoOnBurger")
-    menuPart.classList.add("menuOnBurger")
-    ul.classList.add("ulOnBurger")
-  }
-  else {
-    header.classList.remove("toOpenBurger")
-    nav.classList.remove("burgerNav")
-    contact.classList.remove("burgerContact")
-    logo.classList.remove("logoOnBurger")
-    menuPart.classList.remove("menuOnBurger")
-    ul.classList.remove("ulOnBurger")
-    ul.style.height = "100%"
-  }
-})
-  
-  loadInfo()
+                attachEventListeners() {
+                    this.elements.form.addEventListener('submit', (e) => this.handleFormSubmit(e));
+                    this.elements.deleteBtn.addEventListener('click', () => this.handleDelete());
+                    
+                    document.querySelectorAll('.faq-question').forEach(question => {
+                        question.addEventListener('click', (e) => this.handleFaqToggle(e));
+                    });
 
-  form.addEventListener("submit", function (e) {//e ავტომატურად გადაეცემა ნებისმიერ ფუნქციას რომელიც გამოიყენება მოვლენებზე რეაგირებისთვის.
-    e.preventDefault()//შეაჩერებს form-ის ავტომატურ გაგზავნას dom-ის ჩატვირთვისთანავე.
+                    document.querySelectorAll('.faq-content .delete-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => this.handleFaqDelete(e));
+                    });
 
-    // console.log(e)
-    // console.log(e.target)
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', (e) => this.handleSmoothScroll(e));
+                    });
+                },
 
-    //userInfo არის ობიექტი რომელიც ინახავს მომხმარებლის ინფორმაციას. ამ ობიექტის შექმნის შემდეგ შესაძლებელია მისი შენახვა, გამოტანა და ა.შ.
-    let userInfo = {
-      firstName: document.getElementById("firstName").value,
-      lastName: document.getElementById("lastName").value,
-      phone: document.getElementById("phone").value,
-      city: document.getElementById("city").value,
-      email: document.getElementById("email").value,
-      aboutMe: document.getElementById("aboutMe").value,
-    }
+                sanitizeInput(input) {
+                    const div = document.createElement('div');
+                    div.textContent = input;
+                    return div.innerHTML;
+                },
 
-    // userInfo გადაიქცევა სტრიქონად (string) რომ შევძლოთ მისი შენახხვა localStorage-ში "userInfo"-ს key-თ? "userInfo" - არის key. userInfo არის ობიექტი.
-    //რადგან localStorage-ში შესაძლებელია მხოლოდ სტრიქონული(string) ობიექტის შენახვა ამისთვის გვჭირდება stringify რომ userInfo ობიექტი გადაიქცეს სტრიქონად და შევინახოთ localStorage-ში.
-    localStorage.setItem("userInfo", JSON.stringify(userInfo)) 
-    showInfo(userInfo)//showInfo-ს ფუნქცია(ქვემოთ) გამოიტანს იმ ინფორმაციას რომელიც შეიყვანა მომხმარებელმა და შენახულია userInfo-ს ობიექტში.
-  })
+                validateEmail(email) {
+                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return re.test(email);
+                },
 
-  deleteBtn.addEventListener("click", function () {
-    localStorage.removeItem("userInfo")//მომხმარებლის მიერ შეყვანილი ინფორმაცია უკვე ჩაწერილია json ფორმატში და json უკვე გასტრინგებულია stringify()-თ. რადგან დამუშავებულია ობიექტი და მიწოდებულიც არის localStorage-ში ამიტომ აქვე შევქმენი წაშლის ფუნქციაც.
-    output.innerHTML = "<em>Information deleted.</em>"
-    // რადგან output არის ცვლადი რომლითაც p თეგის ტექსტი გამოდის გამოიტანს წაშლის ინფორმაციას.
-    // // ან
-    // output.textContent = "Information deleted."
-  })
+                validatePhone(phone) {
+                    const re = /^[0-9\s\-\+\(\)]+$/;
+                    return re.test(phone) && phone.replace(/\D/g, '').length >= 9;
+                },
 
-  function loadInfo() {
-    let data = localStorage.getItem("userInfo")// data-ში შეინახება ინფორმაცია რომელიც უკვე შენახულია userInfo-ში.ასე შესაძლებელია ცვლადის მეშვეობით წამოიღო ინფო localStorage-დან.
-    if(data){
-      let userInfo =JSON.parse(data)// თუკი არსებობს ინფორმაცია მაშინ გადაიქცევა(parse) ისევ ტექსტის ფორმატად და გასაგებ ენაზე გამოიტანს ამ ინფორმაციას.
-      showInfo(userInfo)
-    }else{
-      output.innerHTML = "<em>no information found</em>"
-    }
-  }
+                showSuccessMessage() {
+                    this.elements.successMessage.classList.add('show');
+                    setTimeout(() => {
+                        this.elements.successMessage.classList.remove('show');
+                    }, 3000);
+                },
 
-  // აღარ აღვწერ ისედაც გასაგებია ყველადერი :))
-  //  seo-სთვის გამოვიყენე strong ტეგი.სემანტიკურადაც უფრო მისაღებია ვიდრე <b> .
-  function showInfo(data){
-    output.innerHTML =`
-      <strong>My Name is:</strong> ${data.firstName}<br>
-      <strong>My LastName is:</strong> ${data.lastName}<br>
-      <strong>My Phone is:</strong> ${data.phone}<br>
-      <strong>I am From:</strong> ${data.city}<br>
-      <strong>My Email:</strong> ${data.email}<br>
-      <strong>About me:</strong> ${data.aboutMe}
-    `
-  }
-})
+                handleFormSubmit(e) {
+                    e.preventDefault();
 
+                    const formData = {
+                        firstName: this.elements.form.querySelector('#firstName').value.trim(),
+                        lastName: this.elements.form.querySelector('#lastName').value.trim(),
+                        phone: this.elements.form.querySelector('#phone').value.trim(),
+                        city: this.elements.form.querySelector('#city').value.trim(),
+                        email: this.elements.form.querySelector('#email').value.trim(),
+                        aboutMe: this.elements.form.querySelector('#aboutMe').value.trim()
+                    };
 
-document.querySelectorAll('.toggleBtn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.closest('.question').classList.toggle('active')
-  })
-})
+                    if (!this.validateEmail(formData.email)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
 
-//washashleli ghilaki
-function deleteQuestion(button) {
-  button.closest('.activDiv').remove()
-}
+                    if (!this.validatePhone(formData.phone)) {
+                        alert('Please enter a valid phone number');
+                        return;
+                    }
+
+                    try {
+                        localStorage.setItem('userInfo', JSON.stringify(formData));
+                        this.displayUserInfo(formData);
+                        this.elements.form.reset();
+                        this.showSuccessMessage();
+                        this.elements.deleteBtn.style.display = 'block';
+                    } catch (error) {
+                        console.error('Storage error:', error);
+                        alert('Error saving information. Please try again.');
+                    }
+                },
+
+                loadUserInfo() {
+                    try {
+                        const data = localStorage.getItem('userInfo');
+                        if (data) {
+                            const userInfo = JSON.parse(data);
+                            this.displayUserInfo(userInfo);
+                            this.elements.deleteBtn.style.display = 'block';
+                        } else {
+                            this.elements.output.innerHTML = '<em>No information saved yet</em>';
+                            this.elements.deleteBtn.style.display = 'none';
+                        }
+                    } catch (error) {
+                        console.error('Load error:', error);
+                        this.elements.output.innerHTML = '<em>Error loading information</em>';
+                    }
+                },
+
+                displayUserInfo(data) {
+                    this.elements.output.innerHTML = `
+                        <p><strong>Name:</strong> ${this.sanitizeInput(data.firstName)}</p>
+                        <p><strong>Lastname:</strong> ${this.sanitizeInput(data.lastName)}</p>
+                        <p><strong>Phone:</strong> ${this.sanitizeInput(data.phone)}</p>
+                        <p><strong>City:</strong> ${this.sanitizeInput(data.city)}</p>
+                        <p><strong>Email:</strong> ${this.sanitizeInput(data.email)}</p>
+                        <p><strong>About me:</strong> ${this.sanitizeInput(data.aboutMe)}</p>
+                    `;
+                },
+
+                handleDelete() {
+                    if (confirm('Are you sure you want to delete your information?')) {
+                        try {
+                            localStorage.removeItem('userInfo');
+                            this.elements.output.innerHTML = '<em>Information deleted successfully</em>';
+                            this.elements.deleteBtn.style.display = 'none';
+                            this.elements.form.reset();
+                        } catch (error) {
+                            console.error('Delete error:', error);
+                            alert('Error deleting information. Please try again.');
+                        }
+                    }
+                },
+
+                handleFaqToggle(e) {
+                    const faqItem = e.currentTarget.closest('.faq-item');
+                    const wasActive = faqItem.classList.contains('active');
+                    
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    if (!wasActive) {
+                        faqItem.classList.add('active');
+                    }
+                },
+
+                handleFaqDelete(e) {
+                    e.stopPropagation();
+                    const faqItem = e.target.closest('.faq-item');
+                    
+                    if (confirm('Are you sure you want to delete this FAQ item?')) {
+                        faqItem.style.opacity = '0';
+                        faqItem.style.transform = 'translateX(-20px)';
+                        setTimeout(() => {
+                            faqItem.remove();
+                        }, 300);
+                    }
+                },
+
+                handleSmoothScroll(e) {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        this.elements.menuCheckbox.checked = false;
+                        
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => APP.init());
+            } else {
+                APP.init();
+            }
+        })();

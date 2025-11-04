@@ -1,225 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="just for SEO" content="webi">  -->
-    <title>Document</title>
+    <meta name="description" content="Workflow optimization made easy - ვორქფლოუს ოპტიმიზაცია გამარტივებული პროცესებით და ღრუბლოვანი სერვისებით">
+    <meta name="keywords" content="workflow optimization, ვორქფლოუს ოპტიმიზაცია, cloud storage, ღრუბლოვანი შენახვა, tamta">
+    <meta name="author" content="Tamta Khutsishvili">
+    <meta property="og:title" content="Workflow Optimization Made Easy - tamta.ge">
+    <meta property="og:description" content="პროფესიონალური ვორქფლოუს მართვის სისტემა">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tamta.ge">
+    <link rel="canonical" href="https://tamta.ge">
+    <title>Workflow Optimization - tamta.ge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./style.css">
-    <script src="https://kit.fontawesome.com/77d3034ac0.js" crossorigin="anonymous"></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"> -->
 </head>
 <body>
-<header>
-    <div class="menuBarContainer" id="checkboxDiv">
-    <input type="checkbox" id="MenuCheckBox">
-    <label for="MenuCheckBox" class="menuToggle">
-        <i class="fa-solid fa-bars"></i>
-        <i class="fa-solid fa-xmark"></i>
-    </label>
-</div>
-    <nav>
-        <div class="logo">
-            <a href="/">
-                <div class="logoDiv"></div>
-            </a>
+    <header>
+        <input type="checkbox" id="menu-checkbox" aria-label="Toggle menu">
+        <button class="menu-toggle" aria-label="Menu toggle">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <nav>
+            <div class="logo">
+                <a href="/" aria-label="Home">TAMTA.GE</a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="contact">
+                <ul>
+                    <li>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>WORKFLOW OPTIMIZATION MADE EASY</h1>
+                <button>Get Started</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h3>Minimize Your Documents</h3>
+                <p>Streamline your document management with our efficient organization tools.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h3>Saved to the Cloud</h3>
+                <p>Access your files anywhere with secure cloud storage solutions.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3>Secure Storage</h3>
+                <p>Enterprise-grade security to keep your data safe and protected.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Fast Performance</h3>
+                <p>Lightning-fast access to your files with optimized infrastructure.</p>
+            </article>
+        </section>
+
+        <section class="pricing-section">
+            <h2>Choose the Perfect Plan</h2>
+            <p>Select the plan that best fits your needs. All plans include basic features with flexible upgrade options.</p>
+            <div class="pricing-cards">
+                <article class="pricing-card">
+                    <div class="price">
+                        <p class="price-value">$19</p>
+                        <p class="price-per">per month</p>
+                    </div>
+                    <div class="plan-details">
+                        <p>500 Users</p>
+                        <p>15 Domains</p>
+                        <p>1 Year Support</p>
+                    </div>
+                    <button>Get Started</button>
+                </article>
+                <article class="pricing-card">
+                    <div class="price">
+                        <p class="price-value">$39</p>
+                        <p class="price-per">per month</p>
+                    </div>
+                    <div class="plan-details">
+                        <p>1000 Users</p>
+                        <p>30 Domains</p>
+                        <p>2 Years Support</p>
+                    </div>
+                    <button>Get Started</button>
+                </article>
+                <article class="pricing-card">
+                    <div class="price">
+                        <p class="price-value">$79</p>
+                        <p class="price-per">per month</p>
+                    </div>
+                    <div class="plan-details">
+                        <p>Unlimited Users</p>
+                        <p>Unlimited Domains</p>
+                        <p>Lifetime Support</p>
+                    </div>
+                    <button>Get Started</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h2>Write Information</h2>
+            <div class="success-message" id="success-message">
+                Information saved successfully!
+            </div>
+            <form class="contact-form" id="contact-form">
+                <input type="text" id="firstName" placeholder="First Name" required autocomplete="given-name">
+                <input type="text" id="lastName" placeholder="Last Name" required autocomplete="family-name">
+                <input type="tel" id="phone" placeholder="Phone" required autocomplete="tel">
+                <input type="text" id="city" placeholder="City" required autocomplete="address-level2">
+                <input type="email" id="email" placeholder="Email" required autocomplete="email">
+                <textarea id="aboutMe" placeholder="About me" required></textarea>
+                <button type="submit">Save Information</button>
+            </form>
+            <div class="info-display" id="info-display">
+                <h3>Information about me:</h3>
+                <div id="output"><em>No information saved yet</em></div>
+                <button id="delete-btn" class="delete-btn" style="display: none;">Delete My Information</button>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%234054B2' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EJD%3C/text%3E%3C/svg%3E" alt="Jane Doe" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Jane Doe</h4>
+                            <p>Developer</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">Excellent service with outstanding results. Highly recommend for workflow optimization.</p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%234054B2' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EJS%3C/text%3E%3C/svg%3E" alt="John Smith" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>John Smith</h4>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">Great platform that simplified our entire workflow process. Very satisfied!</p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%234054B2' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EMJ%3C/text%3E%3C/svg%3E" alt="Mary Johnson" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Mary Johnson</h4>
+                            <p>Manager</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">Professional service with amazing customer support. Perfect for our team needs.</p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%234054B2' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3ERW%3C/text%3E%3C/svg%3E" alt="Robert Wilson" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Robert Wilson</h4>
+                            <p>CEO</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">Transformed our business operations completely. Couldn't be happier with the results.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <h2>FAQ</h2>
+            <div class="faq-list">
+                <article class="faq-item">
+                    <div class="faq-question">
+                        <strong>What is your return policy?</strong>
+                        <button class="faq-toggle" type="button" aria-label="Toggle answer">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p>You can return items within 30 days of purchase with full refund. No questions asked.</p>
+                            <div class="faq-actions">
+                                <button class="delete-btn" type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="faq-item">
+                    <div class="faq-question">
+                        <strong>How does cloud storage work?</strong>
+                        <button class="faq-toggle" type="button" aria-label="Toggle answer">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p>Your files are securely stored on remote servers and can be accessed from any device with internet connection.</p>
+                            <div class="faq-actions">
+                                <button class="delete-btn" type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="faq-item">
+                    <div class="faq-question">
+                        <strong>Is my data secure?</strong>
+                        <button class="faq-toggle" type="button" aria-label="Toggle answer">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p>Yes, we use enterprise-grade encryption and security protocols to protect your data at all times.</p>
+                            <div class="faq-actions">
+                                <button class="delete-btn" type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span>© 2024 Made by Tamta Khutsishvili</span>
+            <div class="footer-socials">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://plus.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Plus">
+                    <i class="fa-brands fa-google-plus-g"></i>
+                </a>
+                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                    <i class="fa-brands fa-pinterest"></i>
+                </a>
+            </div>
         </div>
-        <div class="menu" id="menuPart">
-            <ul id="menuUl">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="contact">
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<main>
-    <aside class="mainAside">
-        <div class="banner">
-            <img src="./images/banner.png" alt="Banner Image">
-            <div class="overlay">
-                <h2>
-                    WORKFLOW OPTIMIZATION MADE EASY
-                </h2>
-                <button class="btn">get started</button>
-            </div>
-        </div>
-    </aside>
-    <section class="container">
-        <article>
-            <div class="box"><i class="fa-solid fa-calendar"></i></div>
-            <div><p>MINIMIZE YOUR DOCUMENTS</p></div>
-            <div><p>Click edit button to change this text. Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></div>
-        </article>
-        <article>
-            <div class="box"><i class="fa-solid fa-calendar"></i></div>
-            <div><p>SAVED TO THE CLOUD</p></div>
-            <div><p>Click edit button to change this text. Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></div>
-        </article>
-        <article>
-            <div class="box"><i class="fa-solid fa-calendar"></i></div>
-            <div><p>MINIMIZE YOUR DOCUMENTS</p></div>
-            <div><p>Click edit button to change this text. Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></div>
-        </article>
-        <article>
-            <div class="box"><i class="fa-solid fa-calendar"></i></div>
-            <div><p>MINIMIZE YOUR DOCUMENTS</p></div>
-            <div><p>Click edit button to change this text. Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p></div>
-        </article>
-    </section>
-    <section class="pricing-section">
-        <h2>Choose the perfect plan 2</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio cumque provident ab asperiores, aliquid esse, pariatur ex suscipit non animi porro nam quibusdam dicta, atque neque voluptates expedita velit quia.</p>
-        <aside class="cards-container">
-            <div class="cards">
-                <div class="price">
-                    <p class="price-value">$19</p>
-                    <p class="price-per">per month</p>
-                </div>
-                <div class="plan-details">
-                    <p>500 Users</p>
-                    <p>15 Domains</p>
-                    <p>1 Year Support</p>
-                </div>
-                <button> get started</button>
-            </div>
-            <div class="cards">
-                <div class="price">
-                    <p class="price-value">$19</p>
-                    <p class="price-per">per month</p>
-                </div>
-                <div class="plan-details">
-                    <p>500 Users</p>
-                    <p>15 Domains</p>
-                    <p>1 Year Support</p>
-                </div>
-                <button> get started</button>
-            </div>
-            <div class="cards">
-                <div class="price">
-                    <p class="price-value">$19</p>
-                    <p class="price-per">per month</p>
-                </div>
-                <div class="plan-details">
-                    <p>500 Users</p>
-                    <p>15 Domains</p>
-                    <p>1 Year Support</p>
-                </div>
-                <button> get started</button>
-            </div>
-        </aside>
-    </section>
-    <section class="forms">
-        <h2>Write Information</h2>
-        <form id="infoForm" class="infoInput">
-            <input type="text" id="firstName" placeholder="First Name" required>
-            <input type="text" id="lastName" placeholder="Last Name" required>
-            <input type="tel" id="phone" placeholder="Phone" required>
-            <input type="text" id="city" placeholder="City" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="aboutMe" placeholder="About me" required></textarea>
-            <button type="submit">Save</button>
-        </form>
-        <div id="infoBlock">
-            <h2>Information about me:</h2>
-            <p id="output"></p>
-            <button id="deleteBtn">Delete My Information</button>
-        </div>
-    </section>
-    <section class="clientsSection">
-        <h2>Our clients say</h2>
-        <aside class="reviews">
-          <div class="review">
-            <div class="infoClass">
-                <img src="./images/360_F_550713145_s2msq57EXtgCLkh7wSQVb0NAglb3WPCE.jpg" alt="someImg">
-            <div style="flex-direction: column;">
-                <h4>Jane Doe</h4>
-            <p>Developer</p>
-            </div>
-            </div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore maxime itaque.</p>
-          </div>
-          <div class="review">
-            <div class="infoClass">
-                <img src="./images/360_F_550713145_s2msq57EXtgCLkh7wSQVb0NAglb3WPCE.jpg" alt="someImg">
-            <div style="flex-direction: column;">
-                <h4>Jane Doe</h4>
-            <p>Developer</p>
-            </div>
-            </div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore maxime itaque.</p>
-          </div>
-          <div class="review">
-            <div class="infoClass">
-                <img src="./images/360_F_550713145_s2msq57EXtgCLkh7wSQVb0NAglb3WPCE.jpg" alt="someImg">
-            <div style="flex-direction: column;">
-                <h4>Jane Doe</h4>
-            <p>Developer</p>
-            </div>
-            </div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore maxime itaque.</p>
-          </div>
-          <div class="review">
-            <div class="infoClass">
-                <img src="./images/360_F_550713145_s2msq57EXtgCLkh7wSQVb0NAglb3WPCE.jpg" alt="someImg">
-            <div style="flex-direction: column;">
-                <h4>Jane Doe</h4>
-            <p>Developer</p>
-            </div>
-            </div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore maxime itaque.</p>
-          </div>
-        </aside>
-      </section>
-      <!-- stilizacia ver movaswari bodishi -->
-      <section class="faq">
-        <h2>FAQ</h2>
-        <div class="question">
-          <strong>What is your return policy?</strong>
-          <button class="toggleBtn"><i class="fa-solid fa-angles-down"></i></button>
-          <div class="activDiv">
-            <div class="answer active">You can return items within 30 days of purchase.</div>
-          <button onclick="deleteQuestion(this)">Delete</button>
-          </div>
-        </div>
-      </section>
-          <footer>
-            <aside class="forWidth">
-                <span>© Made with Tamta Khutsishvili</span>
-                <div class="socials">
-                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                  <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
-                  <a href="#"><i class="fa-brands fa-pinterest"></i></i></a>
-                </div>
-            </aside>
-      </footer>
-</main>
-    <script src="./main.js"></script>
+    </footer>
+     <script src="./main.js"></script>
 </body>
 </html>
