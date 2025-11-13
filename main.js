@@ -7,12 +7,38 @@
                     output: document.getElementById('output'),
                     deleteBtn: document.getElementById('delete-btn'),
                     menuCheckbox: document.getElementById('menu-checkbox'),
+                    menuToggle: document.querySelector('.menu-toggle'),
+                    nav: document.querySelector('nav'),
                     successMessage: document.getElementById('success-message')
                 },
                 
                 init() {
                     this.loadUserInfo();
+                    this.setupBurgerMenu();
                     this.attachEventListeners();
+                },
+
+                setupBurgerMenu() {
+                    // Toggle burger menu on button click
+                    if (this.elements.menuToggle) {
+                        this.elements.menuToggle.addEventListener('click', () => {
+                            this.elements.menuCheckbox.checked = !this.elements.menuCheckbox.checked;
+                        });
+                    }
+
+                    // Close menu when clicking on nav links
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            this.elements.menuCheckbox.checked = false;
+                        });
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('header') && this.elements.menuCheckbox.checked) {
+                            this.elements.menuCheckbox.checked = false;
+                        }
+                    });
                 },
 
                 attachEventListeners() {

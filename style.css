@@ -5,6 +5,7 @@
     --white-color: #ffffff;
     --transition-speed: 0.3s;
     --button-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    --header-height: 80px;
 }
 *{ 
     margin: 0;
@@ -15,6 +16,7 @@ body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--secondary-color);
+    overflow-x: hidden;
 }
 a{ 
     text-decoration: none;
@@ -46,7 +48,7 @@ button:disabled{
     cursor: not-allowed;
 }
 header{ 
-    height: 80px;
+    height: var(--header-height);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -57,6 +59,8 @@ header{
     background: var(--white-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 nav{ 
     height: 100%;
@@ -64,6 +68,10 @@ nav{
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.logo{ 
+    display: flex;
     align-items: center;
 }
 .logo a{ 
@@ -103,24 +111,49 @@ nav{
     background: var(--blue-color);
     color: var(--white-color);
 }
-.menu-toggle{ 
+.menu-toggle{
     display: none;
     flex-direction: column;
     cursor: pointer;
-    font-size: 24px;
     background: none;
     border: none;
-    padding: 5px;
+    padding: 10px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
 }
-.menu-toggle .fa-xmark{ 
-    display: none;
+
+.menu-toggle i{
+    font-size: 24px;
+    color: var(--secondary-color);
+    transition: all var(--transition-speed);
+    position: absolute;
 }
+
+.menu-toggle .fa-xmark{
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+#menu-checkbox:checked ~ .menu-toggle .fa-bars{
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+#menu-checkbox:checked ~ .menu-toggle .fa-xmark{
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
 #menu-checkbox{ 
     display: none;
 }
+
 main{ 
     width: 100%;
-    margin-top: 80px;
+    margin-top: var(--header-height);
 }
 .hero{ 
     height: 400px;
@@ -146,6 +179,7 @@ main{
     font-size: 48px;
     margin-bottom: 20px;
     font-weight: 700;
+    line-height: 1.2;
 }
 .hero button{ 
     background: var(--white-color);
@@ -501,76 +535,546 @@ footer{
         transform: translateY(0); 
     }
 }
-@media screen and (max-width: 768px){ 
-    .menu-toggle{ 
-        display: flex;
+@media screen and (max-width: 1024px){
+    nav{
+        width: 90%;
+        max-width: 1200px;
     }
-    #menu-checkbox:checked + .menu-toggle .fa-bars{ 
-        display: none;
+
+    .hero h1{
+        font-size: 42px;
     }
-    #menu-checkbox:checked + .menu-toggle .fa-xmark{ 
-        display: block;
-    }
-    #menu-checkbox:checked ~ nav{ 
-        transform: translateX(0);
-    }
-    nav{ 
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        height: calc(100vh - 80px);
-        flex-direction: column;
-        justify-content: flex-start;
-        background: var(--white-color);
-        transform: translateX(-100%);
-        transition: transform var(--transition-speed);
-        padding: 40px 20px;
-    }
-    .logo{ 
-        position: absolute;
-        left: 20px;
-    }
-    .menu-toggle{ 
-        position: absolute;
-        right: 20px;
-    }
-    .menu ul{ 
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    .contact{ 
-        margin-top: 30px;
-    }
-    .hero h1{ 
+
+    .pricing-section h2,
+    .testimonials h2,
+    .faq-section h2{
         font-size: 32px;
     }
-    .features{ 
-        margin: 40px auto;
+
+    .feature-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
     }
-    .pricing-section,
-    .testimonials,
-    .contact-section,
-    .faq-section{ 
-        padding: 40px 20px;
+
+    .feature-card h3{
+        font-size: 18px;
     }
-    .footer-content{ 
+
+    .price-value{
+        font-size: 42px;
+    }
+}
+@media screen and (max-width: 768px){     
+    .menu-toggle{
+        display: flex;
+        position: absolute;
+        right: 15px;
+    }
+    header .logo{
+        position: absolute;
+        left: 15px;
+        margin: 0;
+        border: none;
+        padding: 0;
+    }
+
+    header .logo a{
+        font-size: 18px;
+        white-space: nowrap;
+    }
+    nav{
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: var(--white-color);
+        flex-direction: column;
+        padding: 30px 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        box-sizing: border-box;
+    }
+    #menu-checkbox:checked ~ nav{
+        transform: translateX(0);
+    }
+    nav .logo{
+        display: none;
+    }
+    .menu ul{
         flex-direction: column;
         gap: 20px;
-        text-align: center;
+        margin-bottom: 30px;
     }
-    .faq-question strong{ 
+
+    .menu a{
+        display: block;
+        padding: 12px 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: all var(--transition-speed);
+    }
+
+    .menu a:hover,
+    .menu a:focus{
+        background: #f0f0f0;
+        color: var(--blue-color);
+    }
+    .contact{
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #e0e0e0;
+    }
+
+    .contact ul{
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .contact a{
+        width: 44px;
+        height: 44px;
+    }
+    .hero{
+        height: 300px;
+        background-attachment: scroll;
+    }
+
+    .hero h1{
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .hero button{
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+    .features{
+        margin: 50px auto 30px;
+        padding: 0 15px;
+        gap: 20px;
+    }
+
+    .feature-card{
+        padding: 25px 15px;
+    }
+
+    .feature-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .feature-card h3{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .feature-card p{
+        font-size: 14px;
+    }
+    .pricing-section{
+        padding: 40px 15px;
+    }
+
+    .pricing-section h2{
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .pricing-section > p{
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .pricing-cards{
+        gap: 20px;
+    }
+
+    .pricing-card{
+        padding: 30px 20px;
+    }
+
+    .price-value{
+        font-size: 36px;
+    }
+
+    .plan-details p{
+        font-size: 14px;
+    }
+    .contact-section{
+        padding: 40px 15px;
+        margin: 50px auto;
+    }
+
+    .contact-section h2{
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .contact-form{
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+        padding: 10px;
         font-size: 14px;
     }
 
-    .testimonials-grid{
-        grid-template-columns:auto;
+    .contact-form button{
+        padding: 12px;
+        font-size: 14px;
     }
 
+    .info-display{
+        padding: 20px;
+    }
+
+    .info-display h3{
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .info-display p{
+        font-size: 13px;
+        margin: 10px 0;
+    }
+    .testimonials{
+        padding: 40px 15px;
+    }
+
+    .testimonials h2{
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .testimonials-grid{
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .testimonial-card{
+        padding: 20px;
+    }
+
+    .testimonial-header{
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .testimonial-avatar{
+        width: 50px;
+        height: 50px;
+    }
+
+    .testimonial-info h4{
+        font-size: 14px;
+    }
+
+    .testimonial-info p{
+        font-size: 12px;
+    }
+
+    .testimonial-text{
+        font-size: 13px;
+    }
+    .faq-section{
+        padding: 40px 15px;
+        margin: 50px auto;
+    }
+
+    .faq-section h2{
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .faq-item{
+        margin-bottom: 12px;
+    }
+
+    .faq-question{
+        padding: 15px;
+    }
+
+    .faq-question strong{
+        font-size: 14px;
+        flex: 1;
+    }
+
+    .faq-toggle{
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    .faq-content{
+        padding: 0 15px 15px 15px;
+    }
+
+    .faq-content p{
+        font-size: 13px;
+    }
+    .footer-content{
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-content span{
+        font-size: 14px;
+    }
+
+    .footer-socials{
+        gap: 12px;
+    }
+
+    .footer-socials a{
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 480px){
+    header{
+        height: 70px;
+        overflow: hidden;
+    }
+
+    main{
+        margin-top: 70px;
+    }
+
+    nav{
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+
+    header .logo{
+        left: 15px;
+    }
+
+    header .logo a{
+        font-size: 16px;
+    }
+
+    .menu-toggle{
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        right: 10px;
+    }
+
+    .menu-toggle i{
+        font-size: 20px;
+    }
     .hero{
-        background-position: center;
-        background-size: auto;
-        background-attachment: local;
+        height: 250px;
+    }
+
+    .hero h1{
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .hero button{
+        padding: 10px 25px;
+        font-size: 12px;
+    }
+    .features{
+        margin: 30px auto;
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .feature-card{
+        padding: 15px 10px;
+    }
+
+    .feature-icon{
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    .feature-card h3{
+        font-size: 14px;
+    }
+
+    .feature-card p{
+        font-size: 12px;
+    }
+    .pricing-section{
+        padding: 30px 10px;
+    }
+
+    .pricing-section h2{
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .pricing-section > p{
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .pricing-card{
+        padding: 25px 15px;
+    }
+
+    .price-value{
+        font-size: 32px;
+    }
+
+    .price-per{
+        font-size: 12px;
+    }
+
+    .plan-details p{
+        font-size: 12px;
+        margin: 8px 0;
+    }
+
+    .pricing-card button{
+        padding: 10px;
+        font-size: 12px;
+    }
+    .contact-section{
+        padding: 30px 10px;
+        margin: 30px auto;
+    }
+
+    .contact-section h2{
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .contact-form{
+        gap: 10px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .contact-form button{
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .info-display{
+        padding: 15px;
+    }
+
+    .info-display h3{
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .info-display p{
+        font-size: 12px;
+        margin: 8px 0;
+    }
+    .testimonials{
+        padding: 30px 10px;
+    }
+
+    .testimonials h2{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-card{
+        padding: 15px;
+    }
+
+    .testimonial-header{
+        gap: 10px;
+    }
+
+    .testimonial-avatar{
+        width: 45px;
+        height: 45px;
+    }
+
+    .testimonial-info h4{
+        font-size: 12px;
+    }
+
+    .testimonial-info p{
+        font-size: 11px;
+    }
+
+    .testimonial-text{
+        font-size: 12px;
+    }
+    .faq-section{
+        padding: 30px 10px;
+        margin: 30px auto;
+    }
+
+    .faq-section h2{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .faq-question{
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .faq-question strong{
+        font-size: 13px;
+    }
+
+    .faq-toggle{
+        align-self: flex-end;
+        font-size: 14px;
+        padding: 3px;
+    }
+
+    .faq-content{
+        padding: 0 12px 12px 12px;
+    }
+
+    .faq-content p{
+        font-size: 12px;
+    }
+
+    .delete-btn{
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    .footer-content{
+        gap: 12px;
+    }
+
+    .footer-content span{
+        font-size: 12px;
+    }
+
+    .footer-socials{
+        gap: 10px;
+    }
+
+    .footer-socials a{
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .success-message{
+        padding: 12px;
+        font-size: 12px;
+        margin-bottom: 12px;
     }
 }
